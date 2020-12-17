@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     OUTPUT_DIR: '/output'
+    TMP_DIR: '/tmp'
 
 phases:
   install:
@@ -11,19 +12,21 @@ phases:
   pre_build:
     commands:
       - echo clean up directories...
-      - rm -rf ${OUTPUT_DIR}/
+      - rm -rf ${OUTPUT_DIR}/ ${TMP_DIR}/
       - echo setup directories...
-      - mkdir -p ${OUTPUT_DIR} ${OUTPUT_DIR}/scripts
+      - mkdir -p ${OUTPUT_DIR} ${TMP_DIR}/scripts ${TMP_DIR}
   build:
     commands:
       - echo Build started on `date`
       - GO111MODULE=on go run github.com/gobuffalo/packr/v2/packr2
-      - GO111MODULE=on CGO_ENABLED=0 go build -ldflags="-w -s" -o ${OUTPUT_DIR}/scribblers-al2 .
-      - cp -r codedeploy/* ${OUTPUT_DIR}/
-      - cp -r codedeploy/scripts/* ${OUTPUT_DIR}/scripts/
+      - GO111MODULE=on CGO_ENABLED=0 go build -ldflags="-w -s" -o ${TMP_DIR}/scribblers-al2 .
+      - cp -r codedeploy/* ${TMP_DIR}/
+      - cp -r codedeploy/scripts/* ${TMP_DIR}/scripts/
   post_build:
     commands:
-      - chmod +x ${OUTPUT_DIR}/scripts
+      - chmod +x ${TMP_DIR}/scripts
+      - cd ${TMP_DIR}
+      - zip -r ${OUTPUT_DIR}/scribblers-al2.zip ./*
       - echo Build completed on `date`
 
 artifacts:
