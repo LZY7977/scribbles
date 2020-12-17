@@ -30,6 +30,5 @@ phases:
 
 artifacts:
   files:
-    - ${OUTPUT_DIR}/*
-    - ${OUTPUT_DIR}/scripts/*
+    - ${OUTPUT_DIR}/**/*
   discard-paths: yes
