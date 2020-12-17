@@ -20,9 +20,10 @@ phases:
       - GO111MODULE=on go run github.com/gobuffalo/packr/v2/packr2
       - GO111MODULE=on CGO_ENABLED=0 go build -ldflags="-w -s" -o ${OUTPUT_DIR}/scribblers-al2 .
       - cp -r codedeploy/* ${OUTPUT_DIR}/
-      - cp -r codedeploy/scripts/* ${OUTPUT_DIR}/
+      - cp -r codedeploy/scripts/* ${OUTPUT_DIR}/scripts/
   post_build:
     commands:
+      - chmod +x ${OUTPUT_DIR}/scripts
       - echo Build completed on `date`
 
 artifacts:
