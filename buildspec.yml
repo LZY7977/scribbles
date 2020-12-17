@@ -13,14 +13,14 @@ phases:
       - echo clean up directories...
       - rm -rf ${OUTPUT_DIR}/
       - echo setup directories...
-      - mkdir -p ${OUTPUT_DIR}
+      - mkdir -p ${OUTPUT_DIR} ${OUTPUT_DIR}/scripts
   build:
     commands:
       - echo Build started on `date`
       - GO111MODULE=on go run github.com/gobuffalo/packr/v2/packr2
       - GO111MODULE=on CGO_ENABLED=0 go build -ldflags="-w -s" -o ${OUTPUT_DIR}/scribblers-al2 .
       - cp -r codedeploy/* ${OUTPUT_DIR}/
-      - cp -r codedeploy/scripts ${OUTPUT_DIR}/
+      - cp -r codedeploy/scripts/* ${OUTPUT_DIR}/
   post_build:
     commands:
       - echo Build completed on `date`
