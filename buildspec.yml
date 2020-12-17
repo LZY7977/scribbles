@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+  variables:
+    OUTPUT_DIR: '/output'
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.13
+  pre_build:
+    commands:
+      - echo clean up directories...
+      - rm -rf ${OUTPUT_DIR}/
+      - echo setup directories...
+      - mkdir -p ${OUTPUT_DIR}
+  build:
+    commands:
+      - echo Build started on `date`
+      - GO111MODULE=on go run github.com/gobuffalo/packr/v2/packr2
+      - GO111MODULE=on CGO_ENABLED=0 go build -ldflags="-w -s" -o ${OUTPUT_DIR}/scribblers .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - ${OUTPUT_DIR}/*
+  discard-paths: yes
