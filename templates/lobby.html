@@ -14,7 +14,6 @@
             I get it ... but you are trying to play an interactive drawing game
             here, so you have to turn on JavaScript.</span></noscript>
 <div id="lobby">
-
     <span id="rounds"></span>
 
     <div style="position: relative">
@@ -37,14 +36,8 @@
                 <img src="/resources/user.svg" class="header-button-image"/>
             </button>
         </div>
-
         <div id="word-container" style="position:absolute;left: 50%; transform: translate(-50%, 0);"></div>
     </div>
-    <p id="demo"></p>
-    <script>
-        document.getElementById("demo").innerHTML =
-            "invite link: " + window.location.href;
-    </script>
 
     <span id="time-left">Time Left: ∞</span>
 
@@ -203,11 +196,6 @@
         <button class="canvas-button toolbox-group" style="font-size: 2rem;" onclick="clearCanvasAndSendEvent()"
                 alt="Clear the canvas" title="Clear the canvas">🗑
         </button>
-        <p id="demo2"></p>
-        <script>
-            document.getElementById("demo2").innerHTML =
-                "invite link: " + window.location.href;
-        </script>
     </div>
 </div>
 
