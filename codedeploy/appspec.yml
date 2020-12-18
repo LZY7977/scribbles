@@ -10,6 +10,10 @@ hooks:
     - location: start_app
       timeout: 300
       runas: root
+  ApplicationStop:
+    - location: stop_app
+      timeout: 300
+      runas: root
   AfterInstall:
     - location: reload_systemd
       timeout: 300
