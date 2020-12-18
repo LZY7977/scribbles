@@ -147,6 +147,12 @@ func HandleEvent(raw []byte, received *JSEvent, lobby *Lobby, player *Player) er
 			handleKickEvent(lobby, player, toKickID)
 		}
 	} else if received.Type == "start" {
+		if len(lobby.Players) == 1 {
+			 log.Printf("only one player has entered the lobby, cannot start the game, waiting...")
+		}
+		for len(lobby.Players) == 1 {
+			// do nothing and wait for others to join
+		}
 		if lobby.Round == 0 && player == lobby.Owner {
 			//We are reseting each players score, since players could
 			//technically be player a second game after the last one
