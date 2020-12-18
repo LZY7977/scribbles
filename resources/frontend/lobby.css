@@ -1,19 +1,22 @@
 #rounds {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+    color: rgb(255, 255, 255);
     flex: 1;
 }
 
 #time-left {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: rgb(255, 255, 255);
 }
 
 #word-container {
     text-align: center;
+    color: rgb(255, 255, 255);
 }
 
 .guess-letter-underline {
     text-transform: uppercase;
-    border-bottom: 0.3rem black solid;
+    border-bottom: 0.3rem white solid;
 }
 
 .guess-letter {
@@ -96,7 +99,7 @@
 }
 
 #chat {
-    min-width: 15rem;
+    min-width: 10rem;
     height: 100%;
     display: grid;
     grid-template-rows: auto fit-content(100%);
@@ -148,7 +151,7 @@
     margin-bottom: 15px;
     font-size: 3rem;
     font-weight: bold;
-    color: rgb(240, 105, 127);
+    color: rgb(0, 0, 0);
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -191,12 +194,13 @@ input[type="button"]:active,
 
 .header-button {
     padding: 0.2rem;
-    background-color: transparent;
+    background-color: white;
 }
 
 .header-button-image {
     width: 1.7rem;
     height: 1.7rem;
+    
 }
 
 .custom-check-or-radio {
